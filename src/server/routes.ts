@@ -7,8 +7,7 @@ const router = express.Router();
 // Returns all records for the table that is passed in.
 router.get('/gettasks', async (req, res) => {
     try {
-        const table = req.body.table
-        res.json(await db.db_queries.all(table))
+        res.json(await db.db_queries.all())
     }
     catch(err){
         console.log(err);
@@ -21,7 +20,7 @@ router.get('/gettask', async(req, res) => {
     try {
         const table = req.body.table;
         const id = req.body.id;
-        res.json(await db.db_queries.one(table, id))
+        res.json(await db.db_queries.one(id))
     }
     catch(err) {
         console.log(err);
@@ -33,6 +32,7 @@ router.get('/gettask', async(req, res) => {
 router.post('/tasks', (req, res) => {
     try {
         const content = req.body.content;
+        console.log(content);
         db.db_queries.createTask(content)
         res.sendStatus(200);
     }
