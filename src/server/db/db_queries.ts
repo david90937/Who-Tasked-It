@@ -1,11 +1,11 @@
 import { Query } from "./index";
 
 // retrieves all chirps from database
-const all = async (table: string) => Query(`SELECT * FROM ${table}`);
+const all = async () => Query(`SELECT * FROM tasks`);
 
 // retrieves single chirp with given id
 // Weird thing with quotes happening here that keeps me from using template literals for both table and id. 
-const one = async (table: string, id: string) => Query(`SELECT * FROM ${table} WHERE id = ?`, [id])
+const one = async (id: string) => Query(`SELECT * FROM tasks WHERE id = ?`, [id])
 
 //const getID = async() => Query('SELECT MAX(id) as id from chirps');
 
@@ -15,9 +15,9 @@ const one = async (table: string, id: string) => Query(`SELECT * FROM ${table} W
 
 const createTask = (content: string) => {Query('INSERT INTO tasks(task_content) values(?)', [content])};
 
-const updateNote = (content: string, id: string) => Query('UPDATE notes set note_content = ? WHERE id = ?', [content, id]);
+const updateNote = (content: string, id: string) => Query('UPDATE tasks set task_content = ? WHERE id = ?', [content, id]);
 
-const deleteNote = (id: number) => Query('DELETE from notes WHERE id = ?', [id])
+const deleteNote = (id: number) => Query('DELETE from tasks WHERE id = ?', [id])
 
 //const deleteMention = (id: number) => Query('DELETE from mentions WHERE chirpid = ?', [id])
 
