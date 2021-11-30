@@ -160,10 +160,13 @@ i {
 }
 
 .cover-img {
-    width: 200px;
-    height: 270px;
+    border-radius: 30px;;
+    width: 300px;
+    height: 400px;
     object-fit: fill;
-    border-radius: 1vh;
+    border: 3px rgb(133, 127, 127) solid;
+    padding: 10px;
+    margin: 10px;
 }
 
 #b1 {
@@ -186,4 +189,6 @@ i {
 .sidebar {
     background-color: rgb(255, 255, 255, 0.8);
     background-image: url("../assets/cover2.png");
+    background-position: center;
+    font-size: xx-large;
 }
