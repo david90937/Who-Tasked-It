@@ -229,8 +229,8 @@ function App() {
                     </li>
                   </ul>
                   <h1>Clues</h1>
-                  <div className={"row"}>
-                    <div className={"col-6"}>
+                  <div className={"row col-12"}>
+                    <div className={"col-12"} >
                       <h2>Weapons</h2>
                       <ul>
                         <li
@@ -253,7 +253,7 @@ function App() {
                         </li>
                       </ul>
                     </div>
-                    <div className={"col-6"}>
+                    <div className={"col-12"}>
                       <h2>Locations</h2>
                       <ul>
                         <li
@@ -297,32 +297,31 @@ function App() {
                   <div className={"content"}>
                     <h1>Your solved Mysteries:</h1>
                   </div>
-                  
                 </div>
               </div>
               <div className={"back"}>
                 <div id="b3" className={"back-content"}>
                   <h1>Credits:</h1>
-                  <h2>DAVID</h2>
 
                   <a href={"https://github.com/david90937"}>
                     <img src="github.png" />
                   </a>
-                  <h2>HAYLEE</h2>
+                  <h2>DAVID - back end development</h2>
 
                   <a href={"https://github.com/Zomievey"}>
                     <img src="github.png" />
                   </a>
-                  <h2>DREW</h2>
+                  <h2>HAYLEE - front end development</h2>
 
                   <a href={"https://github.com/dmcleg"}>
                     <img src="github.png" />
                   </a>
-                  <h2>ASHTON</h2>
+                  <h2>DREW - UX/UI development</h2>
 
                   <a href={"https://github.com/ashtonfarmer"}>
                     <img src="github.png" />
                   </a>
+                  <h2>ASHTON - front end development</h2>
                 </div>
               </div>
             </div>
