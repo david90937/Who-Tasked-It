@@ -1,5 +1,4 @@
 import React, {
-
   ChangeEvent,
   FormEvent,
   useEffect,
@@ -74,8 +73,6 @@ function App() {
       book.current!.style.transform = "translateX(0%)";
     } else {
       book.current!.style.transform = "translateX(100%)";
-
-   
     }
     prevBtn.current!.style.transform = "translateX(0px)";
     nextBtn.current!.style.transform = "translateX(0px)";
@@ -232,8 +229,8 @@ function App() {
                     </li>
                   </ul>
                   <h1>Clues</h1>
-                  <div className={"row"}>
-                    <div className={"col-6"}>
+                  <div className={"row col-12"}>
+                    <div className={"col-12"}>
                       <h2>Weapons</h2>
                       <ul>
                         <li
@@ -256,7 +253,7 @@ function App() {
                         </li>
                       </ul>
                     </div>
-                    <div className={"col-6"}>
+                    <div className={"col-12"}>
                       <h2>Locations</h2>
                       <ul>
                         <li
@@ -300,71 +297,79 @@ function App() {
                   <div className={"content"}>
                     <h1>Your solved Mysteries:</h1>
                   </div>
-                  
                 </div>
               </div>
               <div className={"back"}>
                 <div id="b3" className={"back-content"}>
                   <h1>Credits:</h1>
-                  <h2>DAVID</h2>
 
                   <a href={"https://github.com/david90937"}>
                     <img src="github.png" />
                   </a>
-                  <h2>HAYLEE</h2>
+                  <h2>DAVID - back end development</h2>
 
                   <a href={"https://github.com/Zomievey"}>
                     <img src="github.png" />
                   </a>
-                  <h2>DREW</h2>
+                  <h2>HAYLEE - front end development</h2>
 
                   <a href={"https://github.com/dmcleg"}>
                     <img src="github.png" />
                   </a>
-                  <h2>ASHTON</h2>
+                  <h2>DREW - UX/UI development</h2>
 
                   <a href={"https://github.com/ashtonfarmer"}>
                     <img src="github.png" />
                   </a>
+                  <h2>ASHTON - front end development</h2>
                 </div>
               </div>
             </div>
           </div>
-          <div className={"sidebar"}>
-            <h1>Instructions:</h1>
-            <p>1. Create a todo list</p>
-            <p>2. Add suspects to the list</p>
-            <p>3. Add clues to the list</p>
-            <p>4. Solve the mysteries</p>
-          </div>
-        </div>
-        <Modal className={"modalstyle"}
-          isOpen={modalIsOpen}
-          onRequestClose={closeModal}
-          shouldCloseOnOverlayClick={true}
-          shouldCloseOnEsc={true}
-          contentLabel="Example Modal"
-        >
-          <form className={"formstyle"}>
-            <label htmlFor={"username"}>Username</label>
-            <input id={"username"} type={"text"} />
-            <div></div>
-            <label htmlFor={"password"}> Password</label>
-            <input id={"password"} type={"password"} />
-            <button id={"btnform"} className={"btn btn-dark btn-lg"} onClick={login}>
-              Submit
-
+          {isLoggedIn && (
+            <button
+              id={"next-btn"}
+              className="mr-0 col-1 navigation-button"
+              ref={nextBtn}
+              onClick={goNext}
+            >
+              <i className={"fas fa-arrow-circle-right"} />
             </button>
-         </form>
-         </Modal>
+          )}
+        </div>
+        <div className={"sidebar"}>
+          <h1>Instructions:</h1>
+          <p>1. Create a todo list</p>
+          <p>2. Add suspects to the list</p>
+          <p>3. Add clues to the list</p>
+          <p>4. Solve the mysteries</p>
+        </div>
       </div>
+      <Modal
+        className={"modalstyle"}
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        shouldCloseOnOverlayClick={true}
+        shouldCloseOnEsc={true}
+        contentLabel="Example Modal"
+      >
+        <form className={"formstyle"}>
+          <label htmlFor={"username"}>Username</label>
+          <input id={"username"} type={"text"} />
+          <div></div>
+          <label htmlFor={"password"}> Password</label>
+          <input id={"password"} type={"password"} />
+          <button
+            id={"btnform"}
+            className={"btn btn-dark btn-lg"}
+            onClick={login}
+          >
+            Submit
+          </button>
+        </form>
+      </Modal>
     </>
-          )
-          
-
-          
-  
-  
+  );
 }
 
 export default App;
