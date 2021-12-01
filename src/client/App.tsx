@@ -229,7 +229,7 @@ function App() {
                     </li>
                   </ul>
                   <h1>Clues</h1>
-                  <div className={"row col-12"}>
+                  <div className={"row"}>
                     <div className={"col-12"} >
                       <h2>Weapons</h2>
                       <ul>
