@@ -9,6 +9,8 @@ import React, {
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import { faCheck } from "@fortawesome/free-solid-svg-icons";
   
+  
+  
   function App() {
     const prevBtn = useRef<HTMLButtonElement>(null);
     const nextBtn = useRef<HTMLButtonElement>(null);
@@ -278,19 +280,20 @@ import React, {
             <p>4. Solve the mysteries</p>
           </div>
         </div>
-        <Modal
+        <Modal className={"modalstyle"}
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           shouldCloseOnOverlayClick={true}
           shouldCloseOnEsc={true}
           contentLabel="Example Modal"
         >
-          <form>
+          <form className={"formstyle"}>
             <label htmlFor={"username"}>Username</label>
             <input id={"username"} type={"text"} />
-            <label htmlFor={"password"}>Password</label>
+            <div></div>
+            <label htmlFor={"password"}> Password</label>
             <input id={"password"} type={"password"} />
-            <button className={"btn btn-dark btn-lg"} onClick={login}>
+            <button id={"btnform"} className={"btn btn-dark btn-lg"} onClick={login}>
               Submit
             </button>
           </form>
