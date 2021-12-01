@@ -1,4 +1,5 @@
 import React, {
+
   ChangeEvent,
   FormEvent,
   useEffect,
@@ -52,7 +53,7 @@ function App() {
   }
 
   function refreshPage() {
-    window.location.reload(false);
+    window.location.reload();
   }
 
   function saveToDoListInput(e) {
@@ -73,6 +74,8 @@ function App() {
       book.current!.style.transform = "translateX(0%)";
     } else {
       book.current!.style.transform = "translateX(100%)";
+
+   
     }
     prevBtn.current!.style.transform = "translateX(0px)";
     nextBtn.current!.style.transform = "translateX(0px)";
@@ -174,7 +177,7 @@ function App() {
                     <form>
                       <input
                         placeholder="enter task"
-                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
                           setCurrentToDoListInput(e.target.value);
                         }}
                         value={currentToDoListInput}
@@ -326,44 +329,41 @@ function App() {
               </div>
             </div>
           </div>
-          {isLoggedIn && (
-            <button
-              id={"next-btn"}
-              className="mr-0 col-1 navigation-button"
-              ref={nextBtn}
-              onClick={goNext}
-            >
-              <i className={"fas fa-arrow-circle-right"} />
+          <div className={"sidebar"}>
+            <h1>Instructions:</h1>
+            <p>1. Create a todo list</p>
+            <p>2. Add suspects to the list</p>
+            <p>3. Add clues to the list</p>
+            <p>4. Solve the mysteries</p>
+          </div>
+        </div>
+        <Modal className={"modalstyle"}
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          shouldCloseOnOverlayClick={true}
+          shouldCloseOnEsc={true}
+          contentLabel="Example Modal"
+        >
+          <form className={"formstyle"}>
+            <label htmlFor={"username"}>Username</label>
+            <input id={"username"} type={"text"} />
+            <div></div>
+            <label htmlFor={"password"}> Password</label>
+            <input id={"password"} type={"password"} />
+            <button id={"btnform"} className={"btn btn-dark btn-lg"} onClick={login}>
+              Submit
+
             </button>
-          )}
-        </div>
-        <div className={"sidebar"}>
-          <h1>Instructions:</h1>
-          <p>1. Create a todo list</p>
-          <p>2. Add suspects to the list</p>
-          <p>3. Add clues to the list</p>
-          <p>4. Solve the mysteries</p>
-        </div>
+         </form>
+         </Modal>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        shouldCloseOnOverlayClick={true}
-        shouldCloseOnEsc={true}
-        contentLabel="Example Modal"
-      >
-        <form>
-          <label htmlFor={"username"}>Username</label>
-          <input id={"username"} type={"text"} />
-          <label htmlFor={"password"}>Password</label>
-          <input id={"password"} type={"password"} />
-          <button className={"btn btn-dark btn-lg"} onClick={login}>
-            Submit
-          </button>
-        </form>
-      </Modal>
     </>
-  );
+          )
+          
+
+          
+  
+  
 }
 
 export default App;
