@@ -53,7 +53,7 @@ function App() {
   }
 
   function refreshPage() {
-    window.location.reload(false);
+    window.location.reload();
   }
 
   function saveToDoListInput(e) {
@@ -177,7 +177,7 @@ function App() {
                     <form>
                       <input
                         placeholder="enter task"
-                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => {
                           setCurrentToDoListInput(e.target.value);
                         }}
                         value={currentToDoListInput}
@@ -355,35 +355,16 @@ function App() {
               Submit
 
             </button>
-          )}
-        </div>
-        <div className={"sidebar"}>
-          <h1>Instructions:</h1>
-          <p>1. Create a todo list</p>
-          <p>2. Add suspects to the list</p>
-          <p>3. Add clues to the list</p>
-          <p>4. Solve the mysteries</p>
-        </div>
+         </form>
+         </Modal>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        shouldCloseOnOverlayClick={true}
-        shouldCloseOnEsc={true}
-        contentLabel="Example Modal"
-      >
-        <form>
-          <label htmlFor={"username"}>Username</label>
-          <input id={"username"} type={"text"} />
-          <label htmlFor={"password"}>Password</label>
-          <input id={"password"} type={"password"} />
-          <button className={"btn btn-dark btn-lg"} onClick={login}>
-            Submit
-          </button>
-        </form>
-      </Modal>
     </>
-  );
+          )
+          
+
+          
+  
+  
 }
 
 export default App;
