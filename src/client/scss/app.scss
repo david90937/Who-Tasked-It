@@ -192,3 +192,32 @@ i {
     background-position: center;
     font-size: xx-large;
 }
+
+.modalstyle{
+    background-color: rgb(255, 255, 255, 0.8);
+    backface-visibility: hidden;
+    border-left: 3px antiquewhite;
+    background-image: url("../assets/paper.jpg");
+    padding: 15px;
+    margin: 20px;
+    bottom: 1px;
+    height: 205px;
+    position: absolute;
+    left: 92px;
+    top: 200px;
+    border-radius: 15px;
+    border: solid 3px grey;
+}    
+
+.formstyle{
+    justify-content: center;
+    align-items: center;
+    display: table-caption;
+}
+
+#btnform{
+    display: flex;
+    position: absolute;
+    left: 26px;
+    margin-top: 7px;
+}
