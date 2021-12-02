@@ -242,6 +242,7 @@ function App() {
               </div>
               <div className={"align-items-start back"}>
                 <div id="b1" className={"back-content"}>
+                  <div id={"Todo"}className="container">
                   <div className={"content"}>
                     <h2>Create a To-Do List:</h2>
                     <input
@@ -259,6 +260,7 @@ function App() {
                     <h4>Click checkmark to finish a task and get a clue!</h4>
                     <h4>{TaskList}</h4>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
