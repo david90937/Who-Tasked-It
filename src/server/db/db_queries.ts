@@ -17,7 +17,7 @@ const createTask = (content: string) => {Query('INSERT INTO tasks(task_content) 
 
 const updateNote = (content: string, id: string) => Query('UPDATE tasks set task_content = ? WHERE id = ?', [content, id]);
 
-const deleteNote = (id: number) => Query('DELETE from tasks WHERE id = ?', [id])
+const deleteTask = (id: number) => Query('DELETE from tasks WHERE id = ?', [id])
 
 //const deleteMention = (id: number) => Query('DELETE from mentions WHERE chirpid = ?', [id])
 
@@ -26,7 +26,7 @@ export default {
     one,
     createTask,
     updateNote,
-    deleteNote
+    deleteTask
     //getID,
     //createMention,
     //sendMentions,

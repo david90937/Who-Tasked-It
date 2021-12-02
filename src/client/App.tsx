@@ -1,14 +1,15 @@
 import React, {ChangeEvent, FormEvent, useEffect, useRef, useState} from 'react';
 // import cover from "./assets/cover.jpg";
 import Modal from 'react-modal';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCheck} from "@fortawesome/free-solid-svg-icons"
+import Services from '../server/Services';
+import Task from './Components/Task';
+import Clue from './Components/Clue';
 
 function App() {
     const prevBtn = useRef<HTMLButtonElement>(null);
     const nextBtn = useRef<HTMLButtonElement>(null);
     const book = useRef<HTMLDivElement>(null);
-
+    
     const paper1 = useRef<HTMLDivElement>(null);
     const paper2 = useRef<HTMLDivElement>(null);
     const paper3 = useRef<HTMLDivElement>(null);
@@ -17,11 +18,27 @@ function App() {
     const [list, setList] = useState<string[]>([]);
     const [currentToDoListInput, setCurrentToDoListInput] = useState<string>("");
     const [currentState, setCurrentState] = useState<number>(1);
+    const [counter, SetCounter] = useState<number>(0);
+    const [clues, SetClues] = useState<string[]>([]);
+    
+    // Typescript error on task_content
+    const TaskList = list.map((val) => {
+        return  <Task taskText={val.task_content} id={val.id} toDoListItemClicked={toDoListItemClicked}></Task>
+    })
+    const ClueList = clues.map((val) => {
+        return <Clue></Clue>
+    })
 
     useEffect(() => {
         //logic for checking if user is logged in
-
-    }, [])
+        let mounted = true;
+        Services.getTasks().then(tasks => {
+            if (mounted) {
+                setList(tasks)
+            }
+            return () => mounted = false;
+        })
+    }, [counter])
 
     // Event listeners
     //   prevBtn.addEventListener("click", goPrevious);
@@ -60,6 +77,7 @@ function App() {
             body: JSON.stringify(data)
         })
         setCurrentToDoListInput("");
+        SetCounter(counter + 1);
     }
 
     function openBook() {
@@ -128,8 +146,9 @@ function App() {
         }
     }
 
-    function toDoListItemClicked(index: number) {
-        setList(list.filter((_, i) => i !== index));
+    function toDoListItemClicked(id: number) {
+        Services.DeleteTask(id);
+        SetCounter(counter +1);
     }
 
     return (
@@ -171,10 +190,9 @@ function App() {
                         <div id="p2" ref={paper2} className={"paper"}>
                             <div className={"front"}>
                                 <div id="f2" className={"front-content"}>
-                                    <ul>{list.map((item, index) => <>
-                                        <li><FontAwesomeIcon icon={faCheck} style={{cursor: "pointer"}}
-                                                             onClick={() => toDoListItemClicked(index)}/> {item}</li>
-                                    </>)}</ul>
+                                        <ul>
+                                            {TaskList}
+                                        </ul>
                                 </div>
                             </div>
                             <div className={"back"}>
