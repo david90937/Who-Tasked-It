@@ -41,8 +41,38 @@ async function getClue(){
     }
 }
 
+async function getIntialClues(){
+    let suspect = await fetch(`/suspects`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json());
+    let victim = await fetch(`/suspects`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json());
+    let weapon = await fetch(`/weapons`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json());
+    let location = await fetch(`/locations`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json());
+    
+    return [suspect, victim, weapon, location]
+}
+
 export default {
     getTasks,
     DeleteTask,
-    getClue
+    getClue,
+    getIntialClues
 }
