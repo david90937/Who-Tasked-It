@@ -92,6 +92,7 @@ i {
     backface-visibility: hidden;
     border-left: 3px antiquewhite;
     background-image: url("../assets/cover2.png");
+    
 }
 
 .front, 
@@ -194,6 +195,13 @@ i {
     font-size: xx-large;
 }
 
+#Suspect {
+    top: -103px;
+    height: 510px;
+    position: relative;
+    align-items: center;
+}
+
 .modalstyle{
     background-color: rgb(255, 255, 255, 0.8);
     backface-visibility: hidden;
@@ -222,3 +230,12 @@ i {
     left: 26px;
     margin-top: 7px;
 }
+
+#Cluebanner {
+    height: 380px;
+    width: 280px;
+    margin: 10px;
+    border-radius: 15px;
+    border: solid 3px grey;
+}
+
