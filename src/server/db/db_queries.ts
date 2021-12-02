@@ -33,7 +33,7 @@ export default {
     getID,
     getRandomSuspect,
     getRandomWeapon,
-    getRandomLocation
+    getRandomLocation 
     //createMention,
     //sendMentions,
     //deleteMention
