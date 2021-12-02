@@ -7,7 +7,17 @@ const router = express.Router();
 // Returns all records for the table that is passed in.
 router.get('/gettasks', async (req, res) => {
     try {
-        res.json(await db.db_queries.all())
+        res.json(await db.db_queries.allTasks())
+    }
+    catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+});
+
+router.get('/getsuspects', async (req, res) => {
+    try {
+        res.json(await db.db_queries.allSuspects())
     }
     catch(err){
         console.log(err);
@@ -27,6 +37,34 @@ router.get('/gettask', async(req, res) => {
         res.sendStatus(500);
     }
 });
+
+router.get('/suspects', async(req, res)=> {
+    try {
+        res.json(await db.db_queries.getRandomSuspect())
+    }
+    catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+})
+router.get('/weapons', async(req, res)=> {
+    try {
+        res.json(await db.db_queries.getRandomWeapon())
+    }
+    catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+})
+router.get('/locations', async(req, res)=> {
+    try {
+        res.json(await db.db_queries.getRandomLocation())
+    }
+    catch(err){
+        console.log(err);
+        res.sendStatus(500);
+    }
+})
 
 // Sends post request to database to create new note.
 router.post('/tasks', (req, res) => {

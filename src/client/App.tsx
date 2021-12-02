@@ -20,14 +20,33 @@ function App() {
     const [currentState, setCurrentState] = useState<number>(1);
     const [counter, SetCounter] = useState<number>(0);
     const [clues, SetClues] = useState<string[]>([]);
+    const [suspects, SetSuspects] = useState<string[]>([]);
+    const [weapons, SetWeapons] = useState<string[]>([]);
+    const [locations, SetLocations] = useState<string[]>([]);
+    const [blanks, setBlanks] = useState<string[]>(["_____", "_____", "_____", "_____", "_____"]);
     
-    // Typescript error on task_content
+    let blankArray = blanks.map((val) => {
+        return val;
+    });
+
+    // Typescript errors on task_content and val.id
     const TaskList = list.map((val) => {
         return  <Task taskText={val.task_content} id={val.id} toDoListItemClicked={toDoListItemClicked}></Task>
-    })
-    const ClueList = clues.map((val) => {
-        return <Clue></Clue>
-    })
+    });
+    // // this is set using clues[index] because there are multiple types of clue each with a different property that corresponds to its text. 
+    // const ClueList = clues.map((val, index) => {
+    //     return <Clue text={clues[index]}></Clue>
+    // });
+
+    const SuspectList = suspects.map((val, index) => {
+        return <Clue text={suspects[index]}></Clue>
+    });
+    const WeaponList = weapons.map((val, index) => {
+        return <Clue text={weapons[index]}></Clue>
+    });
+    const LocationList = locations.map((val, index) => {
+        return <Clue text={locations[index]}></Clue>
+    });
 
     useEffect(() => {
         //logic for checking if user is logged in
@@ -40,9 +59,9 @@ function App() {
         })
     }, [counter])
 
-    // Event listeners
-    //   prevBtn.addEventListener("click", goPrevious);
-    //   nextBtn.addEventListener("click", goNext);
+    useEffect(() => {
+        setBlanks([...blanks])
+    }, [counter])
 
     // Business Logic
     let numOfPapers = 3;
@@ -146,9 +165,24 @@ function App() {
         }
     }
 
-    function toDoListItemClicked(id: number) {
+    // The clues need to be changed to go into database so that they will persist across server refreshes. Not a top-priority.
+    async function toDoListItemClicked(id: number) {
         Services.DeleteTask(id);
+        let clue = await Services.getClue();
+        if (clue[0] == "suspects"){
+            SetSuspects([...suspects, clue[1]]);
+            blanks.splice(1, 1, clue[1]);
+        }
+        if (clue[0] == "weapons"){
+            SetWeapons([...weapons, clue[1]]);
+            blanks.splice(1, 1, clue[1]);
+        }
+        if (clue[0] == "locations"){
+            SetLocations([...locations, clue[1]]);
+            blanks.splice(1, 1, clue[1]);
+        }
         SetCounter(counter +1);
+        //SetClues([...clues, await Services.getClue()]);
     }
 
     return (
@@ -199,8 +233,7 @@ function App() {
                                 <div id="b2" className={"back-content"}>
                                     <h1>Suspect List</h1>
                                     <ul>
-                                        <li>First Suspect</li>
-                                        <li>Second Suspect</li>
+                                        {SuspectList}
                                     </ul>
                                 </div>
                             </div>
@@ -213,19 +246,13 @@ function App() {
                                         <div className={"col-6"}>
                                             <h2>Weapons</h2>
                                             <ul>
-                                                <li onClick={(e: React.MouseEvent<HTMLLIElement>) => {
-                                                    const element = (e.target as HTMLLIElement);
-                                                    element.style.backgroundColor = "yellow";
-                                                }} style={{cursor: "pointer"}}>first clue
-                                                </li>
-                                                <li>second clue</li>
+                                                {WeaponList}
                                             </ul>
                                         </div>
                                         <div className={"col-6"}>
                                             <h2>Locations</h2>
                                             <ul>
-                                                <li>first clue</li>
-                                                <li>second clue</li>
+                                                {LocationList}
                                             </ul>
                                         </div>
                                     </div>
@@ -236,6 +263,7 @@ function App() {
                                 <div id="b3" className={"back-content"}>
                                     <h1>Your solved Mysteries:</h1>
                                     <div className={"content"}>
+                                        <p>{blankArray}</p>
                                         <textarea id={"note"} rows={12} cols={50}/>
                                     </div>
                                     <input className={"btn btn-dark"} type={"Save"} value={"Save"}/>
