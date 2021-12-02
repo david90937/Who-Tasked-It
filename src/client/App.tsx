@@ -16,7 +16,6 @@ function App() {
   const prevBtn = useRef<HTMLButtonElement>(null);
   const nextBtn = useRef<HTMLButtonElement>(null);
   const book = useRef<HTMLDivElement>(null);
-
   const paper1 = useRef<HTMLDivElement>(null);
   const paper2 = useRef<HTMLDivElement>(null);
   const paper3 = useRef<HTMLDivElement>(null);
@@ -284,7 +283,7 @@ function App() {
                           className={"btn btn-lg btn-dark"}
                           style={{ position: "relative", right: "35px" }}
                         >
-                          Solve
+                            <i className={"fas fa-arrow-circle-right"} />
                         </button>
                       </div>
                     </div>
@@ -330,7 +329,6 @@ function App() {
                   </a>
                   <h2>ASHTON - front end development</h2>
                 </div>
-              </div>
             </div>
           </div>
           {isLoggedIn && (
